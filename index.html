@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Audio Craft Lights & Sound Rental</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="icon" type="image/png" href="logo.png">
+  <!-- Add this inside your <head> tag -->
+    <script type="text/javascript"
+        src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js">
+</script>
+<script type="text/javascript">
+   (function(){
+      emailjs.init({
+        publicKey: "8rPOc7aatKdj_Lf6q",
+      });
+   })();
+</script>
+<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+<!-- <script src="https://cdn.emailjs.com/dist/email.min.js"></script>
+<script>
+  (function(){
+    emailjs.init("8rPOc7aatKdj_Lf6q");
+  })();
+</script> -->
+<!-- Firebase App (the core Firebase SDK) -->
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+<!-- Firebase Auth -->
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
+<script>
+  const firebaseConfig = {
+    apiKey: "AIzaSyAxHcuKQGgbZ-Ty4_DrAdoexxRWLIYwxI8",
+    authDomain: "audio-craft-d2616.firebaseapp.com",
+    projectId: "audio-craft-d2616",
+    storageBucket: "audio-craft-d2616.firebasestorage.app",
+    messagingSenderId: "1076695936962",
+    appId: "1:1076695936962:web:0c50e66abbf093f0a3f05b"
+  };
+  firebase.initializeApp(firebaseConfig);
+</script>
+</head>
+<body>
+
+  <header>
+    <div class="container">
+      <img src="logo.png" alt="Logo" style="height:40px; width:auto;" />
+      <nav>
+        <ul>
+          <li><a href="#">Home</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#services">Services</a></li>
+          <li><a href="#gallery">Gallery</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <section id="home" class="home-section">
+    <div class="container home-flex">
+      <div class="home-content">
+        <h2>Premium Sound System Rentals for Any Event</h2>
+        <p>Weddings, Birthdays, Corporate Events, and More</p>
+        <a href="#contact" class="btn">Book Now</a>
+      </div>
+      <div class="home-image">
+        <img src="https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?auto=format&fit=crop&w=800&q=80" alt="Sound System" style="width:100%; max-width:500px; height:auto;" />
+      </div>
+    </div>
+  </section>
+  
+    <section id="testimonials" class="section">
+      <div class="container">
+        <h2>Client Testimonials</h2>
+        <div class="testimonials">
+          <div class="testimonial">
+            <img class="profile" src="https://randomuser.me/api/portraits/women/44.jpg" alt="Maria S. profile" />
+            <div class="stars">★★★★★</div>
+            <p>"Royales Sound Rental made our wedding unforgettable! The sound quality was amazing and the team was very professional."</p>
+            <span>- Maria S.</span>
+          </div>
+          <div class="testimonial">
+            <img class="profile" src="https://randomuser.me/api/portraits/men/32.jpg" alt="John D. profile" />
+            <div class="stars">★★★★★</div>
+            <p>"Great service for our corporate event. Setup was quick and hassle-free. Highly recommended!"</p>
+            <span>- John D.</span>
+          </div>
+          <div class="testimonial">
+            <img class="profile" src="https://randomuser.me/api/portraits/men/65.jpg" alt="Kevin R. profile" />
+            <div class="stars">★★★★☆</div>
+            <p>"The DJ booth and lighting package brought our party to life. Will book again!"</p>
+            <span>- Kevin R.</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  <section id="about" class="section about-flex">
+    <div class="about-content">
+      <h2>About Us</h2>
+      <p>Audio Craft Sound Rental is your go-to provider for high-quality, affordable sound systems. We serve events across Cebu with professional-grade audio equipment and reliable setup services.</p>
+    </div>
+    <div class="about-image">
+      <img src="https://images.unsplash.com/photo-1465101046530-73398c7f28ca?auto=format&fit=crop&w=400&q=80" alt="Team at work" />
+    </div>
+  </section>
+
+  <section id="services" class="section">
+    <div class="container">
+      <h2>Our Packages</h2>
+      <div class="cards">
+        <div class="card">
+          <h3>Basic</h3>
+          <p>2 Speakers + 1 Mic + Mixer</p>
+          <p class="price">₱2,500/day</p>
+        </div>
+        <div class="card">
+          <h3>Standard</h3>
+          <p>4 Speakers + 2 Mics + Mixer + Technician</p>
+          <p class="price">₱4,000/day</p>
+        </div>
+        <div class="card">
+          <h3>Premium</h3>
+          <p>Full Setup + Lights + DJ Booth</p>
+          <p class="price">₱6,500/day</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="gallery" class="section">
+    <div class="container">
+      <h2>Gallery</h2>
+      <div class="gallery">
+        <div class="gallery-item">
+          <img src="/public/wedding5.png" alt="Event Sound System" />
+          <div class="desc">Event Sound System</div>
+        </div>
+        <div class="gallery-item">
+          <img src="/public/wedding4.png" alt="DJ Booth" />
+          <div class="desc">DJ Booth</div>
+        </div>
+        <div class="gallery-item">
+          <img src="/public/wedding2.png" alt="Live Event" />
+          <div class="desc">Live Event</div>
+        </div>
+        <div class="gallery-item">
+          <img src="/public/disco.png" alt="Speakers" />
+          <div class="desc">Speakers</div>
+        </div>
+        <div class="gallery-item">
+          <img src="https://images.unsplash.com/photo-1432888498266-38ffec3eaf0a?auto=format&fit=crop&w=600&q=80" alt="Crowd" />
+          <div class="desc">Crowd</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact" class="section">
+    <div class="container">
+      <h2>Contact & Booking</h2>
+      <form id="contact-form">
+        <input type="text" name="name" id="name" placeholder="Your Name" required />
+        <input type="tel" name="phone" id="phone" placeholder="Phone Number" required />
+        <input type="email" name="email" id="email" placeholder="Email" required />
+        <input type="date" name="date" id="date" required />
+        <select name="package" id="package" required>
+          <option value="">Select Package</option>
+          <option value="basic">Basic</option>
+          <option value="standard">Standard</option>
+          <option value="premium">Premium</option>
+        </select>
+        <textarea name="message" id="message" placeholder="Message / Event Details" rows="4"></textarea>
+        <button type="submit">Send Request</button>
+      </form>
+      <div class="social-links">
+        <a href="https://www.facebook.com/profile.php?id=100064140516290" target="_blank" title="Facebook Page">
+          <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/facebook.svg" alt="Facebook" class="social-icon" />
+        </a>
+        <a href="https://www.facebook.com/johnargie.aranda.9/photos" target="_blank" title="Founder">
+          <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/facebook.svg" alt="Founder Facebook" class="social-icon" />
+        </a>
+        <a href="#" title="Instagram">
+          <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/instagram.svg" alt="Instagram" class="social-icon" />
+        </a>
+        <a href="#" title="Twitter">
+          <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/twitter.svg" alt="Twitter" class="social-icon" />
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Add this before your Contact section -->
+<section id="location" class="section">
+  <div class="container" style="text-align:center;">
+    <h2>Our Location</h2>
+    <video src="Audio Craft - Google Earth.mp4" autoplay loop muted playsinline style="max-width:600px; width:100%; border-radius:12px; box-shadow:0 4px 18px rgba(0,0,0,0.15);"></video>
+    <p style="margin-top:1rem;">Visit us in Cebu, PH</p>
+  </div>
+</section>
+
+  <footer>
+    <div class="container">
+      <p>&copy; 2025 Audio Craft Sound Rental | Cebu, PH</p>
+    </div>
+  </footer>
+
+  <!-- ...existing code... -->
+<div id="auth-modal" class="auth-modal">
+  <div class="auth-modal-content">
+    <h3>Login or Sign Up</h3>
+    <div class="social-login">
+      <button class="social-btn google" onclick="loginWithGoogle()" title="Login with Google">
+        <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/google.svg" alt="Google" />
+      </button>
+      <button class="social-btn facebook" onclick="loginWithFacebook()" title="Login with Facebook">
+        <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/facebook.svg" alt="Facebook" />
+      </button>
+      <button class="social-btn github" onclick="loginWithGithub()" title="Login with GitHub">
+        <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/github.svg" alt="GitHub" />
+      </button>
+    </div>
+    <div class="auth-divider"><span>or</span></div>
+    <form id="email-login-form">
+      <input type="email" id="auth-email" placeholder="Email" required>
+      <input type="password" id="auth-password" placeholder="Password" required>
+      <button type="submit" class="auth-submit-btn">Login / Sign Up</button>
+    </form>
+  </div>
+</div>
+<!-- ...existing code... -->
+
+  <script src="script.js"></script>
+</body>
+</html>
