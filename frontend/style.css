@@ -350,6 +350,8 @@ footer {
 .auth-modal {
   position: fixed;
   top: 0; left: 0; right: 0; bottom: 0;
+  min-height: 100vh;
+  min-width: 100vw;
   background: rgba(0,0,0,0.45);
   display: flex;
   align-items: center;
@@ -363,9 +365,47 @@ footer {
   border-radius: 14px;
   box-shadow: 0 8px 32px rgba(0,0,0,0.18);
   min-width: 320px;
-  max-width: 90vw;
+  max-width: 50vw;
   text-align: center;
   position: relative;
+}
+
+.auth-modal-content.auth-modal-split {
+  display: flex;
+  flex-direction: row;
+  min-width: 600px;
+  max-width: 50vw;
+  padding: 0;
+  text-align: left;
+}
+
+.auth-modal-left {
+  flex: 1;
+  background: #f7f7fa;
+  border-radius: 14px 0 0 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 220px;
+  min-height: 350px;
+  padding: 2rem 1rem;
+}
+
+.auth-people-img {
+  width: 100%;
+  max-width: 220px;
+  height: auto;
+  display: block;
+}
+
+.auth-modal-right {
+  flex: 1.2;
+  padding: 2.5rem 2rem 2rem 2rem;
+  border-radius: 0 14px 14px 0;
+  background: #fff;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 .auth-modal-content h3 {
@@ -487,6 +527,19 @@ footer {
   .auth-modal-content {
     min-width: 90vw;
     padding: 1.2rem 0.5rem;
+  }
+  .auth-modal-content.auth-modal-split {
+    flex-direction: column;
+    min-width: 90vw;
+    padding: 0;
+  }
+  .auth-modal-left, .auth-modal-right {
+    border-radius: 14px 14px 0 0;
+    min-width: 100%;
+    padding: 1.2rem 0.5rem;
+  }
+  .auth-modal-right {
+    border-radius: 0 0 14px 14px;
   }
 }
 

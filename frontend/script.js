@@ -118,6 +118,12 @@ firebase.auth().onAuthStateChanged(function(user) {
 // Email/password login/signup
 document.getElementById('email-login-form').addEventListener('submit', function(e) {
   e.preventDefault();
+
+  const button = this.querySelector("button[type='submit']");
+  const originalText = button.textContent;
+  button.disabled = true;
+  button.innerHTML = '<span class="loading-spinner"></span>Sending...';
+  
   const email = document.getElementById('auth-email').value;
   const password = document.getElementById('auth-password').value;
   firebase.auth().signInWithEmailAndPassword(email, password)

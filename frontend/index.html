@@ -19,17 +19,16 @@
 </script>
 <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
 <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
-<!-- <script src="https://cdn.emailjs.com/dist/email.min.js"></script>
-<script>
-  (function(){
-    emailjs.init("8rPOc7aatKdj_Lf6q");
-  })();
-</script> -->
-<!-- Firebase App (the core Firebase SDK) -->
+<!-- Load compat SDK -->
 <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
-<!-- Firebase Auth -->
 <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
-<script>
+<script type="module">
+  // Import the functions you need from the SDKs you need
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-app.js";
+  // TODO: Add SDKs for Firebase products that you want to use
+  // https://firebase.google.com/docs/web/setup#available-libraries
+
+  // Your web app's Firebase configuration
   const firebaseConfig = {
     apiKey: "AIzaSyAxHcuKQGgbZ-Ty4_DrAdoexxRWLIYwxI8",
     authDomain: "audio-craft-d2616.firebaseapp.com",
@@ -38,9 +37,108 @@
     messagingSenderId: "1076695936962",
     appId: "1:1076695936962:web:0c50e66abbf093f0a3f05b"
   };
-  firebase.initializeApp(firebaseConfig);
+
+  // Initialize Firebase
+  const app = initializeApp(firebaseConfig);
+
+   // Now firebase.auth() works as expected
+  firebase.auth().onAuthStateChanged(user => {
+    console.log("User state changed", user);
+  });
 </script>
 </head>
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+  const authModal = document.getElementById('auth-modal');
+
+  firebase.auth().onAuthStateChanged(function (user) {
+    if (!user) {
+      authModal.style.display = 'block';
+    } else {
+      authModal.style.display = 'none';
+      document.cookie = `user=${user.email}; max-age=${60 * 60 * 24 * 30}; path=/`;
+      // Redirect to landing page
+      window.location.href = 'landing.html';
+    }
+  });
+
+  document.getElementById('email-login-form').addEventListener('submit', function (e) {
+    e.preventDefault();
+
+    const button = this.querySelector("button[type='submit']");
+    const originalText = button.textContent;
+    button.disabled = true;
+    button.innerHTML = '<span class="loading-spinner"></span> Logging in...';
+
+    const email = document.getElementById('auth-email').value;
+    const password = document.getElementById('auth-password').value;
+
+    firebase.auth().signInWithEmailAndPassword(email, password)
+      .then(() => {
+        Toastify({
+          text: "Login successful!",
+          duration: 3000,
+          gravity: "top",
+          position: "right",
+          backgroundColor: "#4CAF50"
+        }).showToast();
+      })
+      .catch(function (error) {
+        if (error.code === 'auth/user-not-found') {
+          firebase.auth().createUserWithEmailAndPassword(email, password)
+            .then(() => {
+              Toastify({
+                text: "Account created successfully!",
+                duration: 3000,
+                gravity: "top",
+                position: "right",
+                backgroundColor: "#4CAF50"
+              }).showToast();
+            })
+            .catch(err => {
+              Toastify({
+                text: err.message,
+                duration: 3000,
+                gravity: "top",
+                position: "right",
+                backgroundColor: "#FF6B6B"
+              }).showToast();
+            })
+            .finally(() => {
+              button.disabled = false;
+              button.textContent = originalText;
+            });
+        } else {
+          Toastify({
+            text: error.message,
+            duration: 3000,
+            gravity: "top",
+            position: "right",
+            backgroundColor: "#FF6B6B"
+          }).showToast();
+          button.disabled = false;
+          button.textContent = originalText;
+        }
+      });
+  });
+
+  window.loginWithGoogle = function () {
+    const provider = new firebase.auth.GoogleAuthProvider();
+    firebase.auth().signInWithPopup(provider);
+  };
+
+  window.loginWithFacebook = function () {
+    const provider = new firebase.auth.FacebookAuthProvider();
+    firebase.auth().signInWithPopup(provider);
+  };
+
+  window.loginWithGithub = function () {
+    const provider = new firebase.auth.GithubAuthProvider();
+    firebase.auth().signInWithPopup(provider);
+  };
+});
+</script>
+
 <body>
 
   <header>
@@ -135,19 +233,19 @@
       <h2>Gallery</h2>
       <div class="gallery">
         <div class="gallery-item">
-          <img src="/public/wedding5.png" alt="Event Sound System" />
+          <img src="/frontend/public/wedding5.png" alt="Event Sound System" />
           <div class="desc">Event Sound System</div>
         </div>
         <div class="gallery-item">
-          <img src="/public/wedding4.png" alt="DJ Booth" />
+          <img src="/frontend/public/wedding4.png" alt="DJ Booth" />
           <div class="desc">DJ Booth</div>
         </div>
         <div class="gallery-item">
-          <img src="/public/wedding2.png" alt="Live Event" />
+          <img src="/frontend/public/wedding2.png" alt="Live Event" />
           <div class="desc">Live Event</div>
         </div>
         <div class="gallery-item">
-          <img src="/public/disco.png" alt="Speakers" />
+          <img src="/frontend/public/disco.png" alt="Speakers" />
           <div class="desc">Speakers</div>
         </div>
         <div class="gallery-item">
@@ -188,6 +286,16 @@
         <a href="#" title="Twitter">
           <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/twitter.svg" alt="Twitter" class="social-icon" />
         </a>
+        <!-- Third-party tech stack icons -->
+        <a href="https://firebase.google.com/" target="_blank" title="Firebase">
+          <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/firebase.svg" alt="Firebase" class="social-icon" />
+        </a>
+        <a href="https://www.emailjs.com/" target="_blank" title="EmailJS">
+          <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/emaildotjs.svg" alt="EmailJS" class="social-icon" />
+        </a>
+        <a href="https://www.vonage.com/" target="_blank" title="Vonage">
+          <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/vonage.svg" alt="Vonage" class="social-icon" />
+        </a>
       </div>
     </div>
   </section>
@@ -196,7 +304,7 @@
 <section id="location" class="section">
   <div class="container" style="text-align:center;">
     <h2>Our Location</h2>
-    <video src="Audio Craft - Google Earth.mp4" autoplay loop muted playsinline style="max-width:600px; width:100%; border-radius:12px; box-shadow:0 4px 18px rgba(0,0,0,0.15);"></video>
+    <video src="/frontend/public/Audio Craft - Google Earth.mp4" autoplay loop muted playsinline style="max-width:600px; width:100%; border-radius:12px; box-shadow:0 4px 18px rgba(0,0,0,0.15);"></video>
     <p style="margin-top:1rem;">Visit us in Cebu, PH</p>
   </div>
 </section>
@@ -207,30 +315,34 @@
     </div>
   </footer>
 
-  <!-- ...existing code... -->
 <div id="auth-modal" class="auth-modal">
-  <div class="auth-modal-content">
-    <h3>Login or Sign Up</h3>
-    <div class="social-login">
-      <button class="social-btn google" onclick="loginWithGoogle()" title="Login with Google">
-        <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/google.svg" alt="Google" />
-      </button>
-      <button class="social-btn facebook" onclick="loginWithFacebook()" title="Login with Facebook">
-        <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/facebook.svg" alt="Facebook" />
-      </button>
-      <button class="social-btn github" onclick="loginWithGithub()" title="Login with GitHub">
-        <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/github.svg" alt="GitHub" />
-      </button>
+  <div class="auth-modal-content auth-modal-split">
+    <div class="auth-modal-left">
+      <!-- You can use a Lottie animation, GIF, or static image here -->
+      <img src="/frontend/logo.png" alt="People Animation" class="auth-people-img" />
     </div>
-    <div class="auth-divider"><span>or</span></div>
-    <form id="email-login-form">
-      <input type="email" id="auth-email" placeholder="Email" required>
-      <input type="password" id="auth-password" placeholder="Password" required>
-      <button type="submit" class="auth-submit-btn">Login / Sign Up</button>
-    </form>
+    <div class="auth-modal-right">
+      <h3>Login or Sign Up</h3>
+      <div class="social-login">
+        <button class="social-btn google" onclick="loginWithGoogle()" title="Login with Google">
+          <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/google.svg" alt="Google" />
+        </button>
+        <button class="social-btn facebook" onclick="loginWithFacebook()" title="Login with Facebook">
+          <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/facebook.svg" alt="Facebook" />
+        </button>
+        <button class="social-btn github" onclick="loginWithGithub()" title="Login with GitHub">
+          <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/github.svg" alt="GitHub" />
+        </button>
+      </div>
+      <div class="auth-divider"><span>or</span></div>
+      <form id="email-login-form">
+        <input type="email" id="auth-email" placeholder="Email" required>
+        <input type="password" id="auth-password" placeholder="Password" required>
+        <button type="submit" class="auth-submit-btn">Login / Sign Up</button>
+      </form>
+    </div>
   </div>
 </div>
-<!-- ...existing code... -->
 
   <script src="script.js"></script>
 </body>
