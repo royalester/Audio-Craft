@@ -1,3 +1,16 @@
+import { initializeApp } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-app.js";
+
+const firebaseConfig = {
+  apiKey: "AIzaSyAxHcuKQGgbZ-Ty4_DrAdoexxRWLIYwxI8",
+  authDomain: "audio-craft-d2616.firebaseapp.com",
+  projectId: "audio-craft-d2616",
+  storageBucket: "audio-craft-d2616.appspot.com",
+  messagingSenderId: "1076695936962",
+  appId: "1:1076695936962:web:0c50e66abbf093f0a3f05b"
+};
+
+const app = initializeApp(firebaseConfig);
+
 document.getElementById("contact-form").addEventListener("submit", function (e) {
   e.preventDefault();
 

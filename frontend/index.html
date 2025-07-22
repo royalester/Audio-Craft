@@ -22,30 +22,7 @@
 <!-- Load compat SDK -->
 <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
-<script type="module">
-  // Import the functions you need from the SDKs you need
-  import { initializeApp } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-app.js";
-  // TODO: Add SDKs for Firebase products that you want to use
-  // https://firebase.google.com/docs/web/setup#available-libraries
 
-  // Your web app's Firebase configuration
-  const firebaseConfig = {
-    apiKey: "AIzaSyAxHcuKQGgbZ-Ty4_DrAdoexxRWLIYwxI8",
-    authDomain: "audio-craft-d2616.firebaseapp.com",
-    projectId: "audio-craft-d2616",
-    storageBucket: "audio-craft-d2616.firebasestorage.app",
-    messagingSenderId: "1076695936962",
-    appId: "1:1076695936962:web:0c50e66abbf093f0a3f05b"
-  };
-
-  // Initialize Firebase
-  const app = initializeApp(firebaseConfig);
-
-   // Now firebase.auth() works as expected
-  firebase.auth().onAuthStateChanged(user => {
-    console.log("User state changed", user);
-  });
-</script>
 </head>
 <script>
 document.addEventListener("DOMContentLoaded", function () {
@@ -344,6 +321,6 @@ document.addEventListener("DOMContentLoaded", function () {
   </div>
 </div>
 
-  <script src="script.js"></script>
+  <script type="module" src="script.js" defer></script>
 </body>
 </html>
